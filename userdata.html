@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show User Data</title>
+</head>
+<body>
+
+    <h2>User Details</h2>
+
+    <p>Name: <span id="name"></span></p>
+    <p>Email: <span id="email"></span></p>
+    <p>Phone: <span id="phone"></span></p>
+    <p>DOB: <span id="dob"></span></p>
+
+    <button id="logoutBtn">Logout</button>
+
+    <script>
+        // Display saved data
+        document.getElementById("name").textContent = localStorage.getItem("userName");
+        document.getElementById("email").textContent = localStorage.getItem("userEmail");
+        document.getElementById("phone").textContent = localStorage.getItem("userPhone");
+        document.getElementById("dob").textContent = localStorage.getItem("userDob");
+
+        // Logout button functionality
+       var logout = document.getElementById("logoutBtn")
+       
+        logout.addEventListener("click", function() {
+            // Remove data from localStorage
+            localStorage.removeItem("userName");
+            localStorage.removeItem("userEmail");
+            localStorage.removeItem("userPhone");
+            localStorage.removeItem("userDob");
+
+            alert("You have been logged out!");
+
+            window.location.href = "index.html";
+        });
+    </script>
+
+</body>
+</html>

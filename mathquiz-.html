@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Quiz</title>
+</head>
+<body>
+    <h1 id="question"></h1>
+    <input type="number" id="answer" placeholder="Enter your answer">
+    <button onclick="checkanswer()">Submit</button>
+    <p id="feedback"></p>
+    <p id="score">Score: 0</p>
+    <p id="timer">Time left: 30</p>
+    <button onclick="startGame()">Start Game</button>
+
+    <script>
+        let num1, num2, correctanswer;
+        let score = 0;
+        let timeleft = 30;
+        let timer;
+
+        function generatequestion(){
+            num1 = Math.floor(Math.random() * 10) + 1;  
+            num2 = Math.floor(Math.random() * 10) + 1;  
+            correctanswer = num1 + num2; 
+            document.getElementById("question").textContent = `What is ${num1} + ${num2}?`;
+        }
+
+        function checkanswer(){
+            let useranswer = parseInt(document.getElementById("answer").value);
+            if(useranswer === correctanswer){
+                score++;
+                document.getElementById("feedback").textContent = "Correct 👍";
+            } else {
+                document.getElementById("feedback").textContent = "Incorrect 😒";
+            }
+            document.getElementById("score").textContent = `Score: ${score}`;
+            document.getElementById("answer").value = "";
+            generatequestion(); // Load next question
+        }
+
+        function starttimer(){
+            timer = setInterval(() => {
+                timeleft--;
+                document.getElementById("timer").textContent = `Time left: ${timeleft}`;
+                if(timeleft <= 0){
+                    clearInterval(timer);
+                    document.getElementById("question").textContent = "Time's up!";
+                    document.getElementById("feedback").textContent = "";
+                }
+            }, 1000);
+        }
+
+        function startGame(){
+            score = 0;
+            timeleft = 30;
+            document.getElementById("score").textContent = `Score: ${score}`;
+            document.getElementById("timer").textContent = `Time left: ${timeleft}`;
+            generatequestion();
+            starttimer();
+        }
+    </script>
+</body>
+</html>
