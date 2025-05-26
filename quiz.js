@@ -27,19 +27,14 @@ function checkanswer(){
      
 }
 function starttimer(){
-    timer = setInterval(()=>{
-        timeleft ;
-        document.getElementById("timer").textContent = `time left;  ${timeleft}`;
-        if(timeleft === 0){
-            clearInterval(timer);
-            document.getElementById("feedback").textContent = "Time's up!";
-           
-        }
+    const timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").innerText = `time left: ${timeLeft}`;
 
-    },1000);
-
+        
+        
+})
 }
-
 generatequestion();
-starttimer();
+
 
